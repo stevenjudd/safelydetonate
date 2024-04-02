@@ -10,6 +10,7 @@ fi
 apt update -y
 
 # Install Win-Kex (this is over 1GB)
+# https://www.kali.org/docs/wsl/win-kex/
 apt install kali-win-kex
 
 echo ""

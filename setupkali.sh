@@ -13,6 +13,7 @@ apt update -y
 apt full-upgrade -y
 
 # Install metapackage
+# https://www.kali.org/docs/general-use/metapackages/
 apt install -y kali-linux-default
 
 echo "Setup completed."
