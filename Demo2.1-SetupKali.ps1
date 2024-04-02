@@ -53,25 +53,30 @@ if ($wslList -match 'kali-linux') {
 }
 #endregion Step 4
 
-#region extra setup
+#region Extra setup
 # Copy setup script
-wsl -d kali-linux cp /mnt/c/Users/steve/OneDrive/Documents/Presentations/SafelyDetonate/setupkali.sh /home/steve/setupkali.sh
+wsl -d kali-linux cp /mnt/c/Users/steve/git/github/stevenjudd/safelydetonate/setupkali.sh /home/steve/setupkali.sh
 
 # Run Kali Linux and run setup script
-Write-Host ("$([char]0x2193)" * 27) -ForegroundColor Yellow
+Write-Host ("$([char]0x2193)" * 34) -ForegroundColor Yellow
 Write-Host 'Run script: ' -ForegroundColor Cyan -NoNewline
-Write-Host './setuplinux.sh' -ForegroundColor Magenta
-Write-Host ("$([char]0x2191)" * 27) -ForegroundColor Yellow
+Write-Host './setupkali.sh' -ForegroundColor Magenta -NoNewline
+Write-Host ' as root' -ForegroundColor Cyan
+Write-Host ("$([char]0x2191)" * 34) -ForegroundColor Yellow
 
 wsl -d kali-linux
-#endregion Setp 4
+#endregion Extra setup
 
 #region Step 5
-# Run Kali Linux and run Win-Kex script
-Write-Host ("$([char]0x2193)" * 27) -ForegroundColor Yellow
-Write-Host 'Run script: ' -ForegroundColor Cyan -NoNewline
-Write-Host './setupwinkex.sh' -ForegroundColor Magenta
-Write-Host ("$([char]0x2191)" * 27) -ForegroundColor Yellow
+# Copy setup script
+wsl -d kali-linux cp /mnt/c/Users/steve/git/github/stevenjudd/safelydetonate/setupwinkex.sh /home/steve/setupkali.sh
 
-# Run Kali using Win-Kex
-wsl -d kali-linux kex --win -s
+# Run Kali Linux and run Win-Kex script
+Write-Host ("$([char]0x2193)" * 36) -ForegroundColor Yellow
+Write-Host 'Run script: ' -ForegroundColor Cyan -NoNewline
+Write-Host './setupwinkex.sh' -ForegroundColor Magenta -NoNewline
+Write-Host ' as root' -ForegroundColor Cyan
+Write-Host ("$([char]0x2191)" * 36) -ForegroundColor Yellow
+
+wsl -d kali-linux
+#endregion Step 5
