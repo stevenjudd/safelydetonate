@@ -43,8 +43,10 @@ function New-sjAzureWin10Vm {
   $VMName = "$NameRoot"
   $VMSize = 'Standard_B2s'
   $VMPublisherName = 'MicrosoftWindowsDesktop'
-  $VMOffer = 'Windows-10'
-  $VMSkus = '20h2-pro'
+  # $VMOffer = 'Windows-10'
+  # $VMSkus = '20h2-pro'
+  $VMOffer = 'Windows-11'
+  $VMSkus = 'win11-24h2-pro'
   $VMVersion = 'latest'
 
   $NetworkName = "$NameRoot-vnet"
@@ -232,37 +234,37 @@ function New-sjAzureWin10Vm {
   }
   New-AzResource @NewAzResourceParams
 
-  Write-Host '=================================' -ForegroundColor Green
-  Write-Host 'Setting Edge First Run Experience'
-  Write-Host '=================================' -ForegroundColor Green
+  # Write-Host '=================================' -ForegroundColor Green
+  # Write-Host 'Setting Edge First Run Experience'
+  # Write-Host '=================================' -ForegroundColor Green
 
-  # Setting Edge First Run Experience
-  $vmSetupScript = {
-    #New-Item -Path HKLM:\SOFTWARE\Microsoft\Edge -ItemType Directory
-    $NewItemPropertyParams1 = @{
-      'Path' = 'HKLM:\SOFTWARE\Microsoft\Edge'
-      'Name' = 'HideFirstRunExperience'
-      'Value' = 1
-      'PropertyType' = 'DWORD'
-    }
-    New-ItemProperty @NewItemPropertyParams1
+  # # Setting Edge First Run Experience
+  # $vmSetupScript = {
+  #   #New-Item -Path HKLM:\SOFTWARE\Microsoft\Edge -ItemType Directory
+  #   $NewItemPropertyParams1 = @{
+  #     'Path' = 'HKLM:\SOFTWARE\Microsoft\Edge'
+  #     'Name' = 'HideFirstRunExperience'
+  #     'Value' = 1
+  #     'PropertyType' = 'DWORD'
+  #   }
+  #   New-ItemProperty @NewItemPropertyParams1
 
-    $NewItemPropertyParams2 = @{
-      'Path' = 'HKLM:\SOFTWARE\Microsoft\Edge'
-      'Name' = 'HomepageLocation'
-      'Value' = 'about:blank'
-      'PropertyType' = 'String'
-    }
-    New-ItemProperty @NewItemPropertyParams2
-  }
+  #   $NewItemPropertyParams2 = @{
+  #     'Path' = 'HKLM:\SOFTWARE\Microsoft\Edge'
+  #     'Name' = 'HomepageLocation'
+  #     'Value' = 'about:blank'
+  #     'PropertyType' = 'String'
+  #   }
+  #   New-ItemProperty @NewItemPropertyParams2
+  # }
 
-  $InvokeAzVMRunCommandParams = @{
-    'ResourceGroupName' = $ResourceGroupName
-    'Name' = $VMName
-    'CommandId' = 'RunPowerShellScript'
-    'ScriptString' = $vmSetupScript
-  }
-  Invoke-AzVMRunCommand @InvokeAzVMRunCommandParams
+  # $InvokeAzVMRunCommandParams = @{
+  #   'ResourceGroupName' = $ResourceGroupName
+  #   'Name' = $VMName
+  #   'CommandId' = 'RunPowerShellScript'
+  #   'ScriptString' = $vmSetupScript
+  # }
+  # Invoke-AzVMRunCommand @InvokeAzVMRunCommandParams
 
   # connect via Remote Desktop
   $vmIpAddress = $((Get-AzPublicIpAddress -ResourceName $PublicIpAddress).IpAddress)
