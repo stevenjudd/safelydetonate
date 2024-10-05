@@ -35,3 +35,5 @@ function Remove-sjAzureDetonateVm {
     return
   }
 } #end function Remove-sjAzureDetonateVm
+
+Remove-sjAzureDetonateVm
