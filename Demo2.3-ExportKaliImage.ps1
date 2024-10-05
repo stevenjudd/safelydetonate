@@ -6,4 +6,5 @@ wsl -d kali-linux --shutdown
 
 # Make a backup image
 wsl --export kali-linux $env:TEMP\kali-linux.tar
-
+Get-ChildItem $env:TEMP\kali-linux.tar
+(Get-ChildItem $env:TEMP\kali-linux.tar).Length / 1GB
