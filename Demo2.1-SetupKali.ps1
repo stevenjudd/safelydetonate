@@ -82,6 +82,6 @@ wsl -d kali-linux
 #endregion Step 5
 
 # Start KeX
-# kex -win -s
+# kex --win -s
 
 # Also, Start Demo3 now because reasons...
